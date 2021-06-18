@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ public class signup extends AppCompatActivity {
     private String Tag = "Ali";
     private EditText emailV , passV ,confirmpassV;
     private Button btnSign;
+    private TextView btnlogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,14 @@ public class signup extends AppCompatActivity {
                 registerNewUser();
             }
         });
+
+        btnSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(signup.this, login.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void signUpUser(){
@@ -45,7 +55,7 @@ public class signup extends AppCompatActivity {
         passV = findViewById(R.id.etPassword);
         confirmpassV = findViewById(R.id.etConfirmPassword);
         btnSign = findViewById(R.id.btnsignup);
-
+        btnlogin = findViewById(R.id.gologinpage);
     }
     private void registerNewUser(){
         String email,password , confirmpass;
