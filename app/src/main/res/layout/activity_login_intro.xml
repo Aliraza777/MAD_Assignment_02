@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".Login_intro">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:text="Isn't life a collection of weird quizzes with \n no answers to half the questions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to quiz master"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/txtLogin_Subheader"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +44,13 @@
         />
 
     <Button
+        android:background="@color/blue"
         android:id="@+id/btn_getStarted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="Get Started"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/txtLogin_Subheader"
         app:layout_constraintStart_toStartOf="@+id/txtLogin_Subheader"
         app:layout_constraintTop_toBottomOf="@+id/txtLogin_Subheader" />

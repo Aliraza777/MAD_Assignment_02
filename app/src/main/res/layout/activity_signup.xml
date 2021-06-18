@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".login">
 
     <LinearLayout
@@ -39,6 +40,7 @@
             android:id="@+id/etEmailAddr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginTop="32dp"
             android:hint="Enter Email"
             android:textSize="16sp"
@@ -50,6 +52,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:hint="Enter Password"
             android:textSize="16sp"
@@ -61,6 +64,7 @@
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:hint="Confirm Password"
             android:textSize="16sp"
@@ -70,7 +74,7 @@
         <Button
 
             android:background="@drawable/btn_primary"
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnsignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
