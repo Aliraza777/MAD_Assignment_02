@@ -41,11 +41,12 @@ public class signup extends AppCompatActivity {
             }
         });
 
-        btnSign.setOnClickListener(new View.OnClickListener() {
+        btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(signup.this, login.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -71,6 +72,7 @@ public class signup extends AppCompatActivity {
 
                             Intent intent = new Intent(signup.this, login.class);
                             startActivity(intent);
+                            finish();
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();

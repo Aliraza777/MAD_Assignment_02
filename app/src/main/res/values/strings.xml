@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Assignment_2</string>
+    <string name="app_name">Quizzy</string>
+<!--    <string name="name">Quizzy</string>-->
+
 </resources>
