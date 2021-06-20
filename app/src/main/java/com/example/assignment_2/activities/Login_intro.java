@@ -1,4 +1,4 @@
-package com.example.assignment_2;
+package com.example.assignment_2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.assignment_2.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login_intro extends AppCompatActivity {
