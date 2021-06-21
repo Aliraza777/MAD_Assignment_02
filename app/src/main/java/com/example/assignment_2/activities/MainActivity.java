@@ -39,8 +39,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         quizlist =  findViewById(R.id.recyclerView);
+        dummy();
         setup_Views();
+    }
 
+    public void dummy(){
+        quiz.add(new Quiz("12.11.2022" , "12.11.2022"));
+        quiz.add(new Quiz("24.6.2022" , "24.6.2022"));
+        quiz.add(new Quiz("13.1.2022" , "13.1.2022"));
+        quiz.add(new Quiz("01.09.2022" , "01.09.2022"));
+        quiz.add(new Quiz("10.10.2022" , "10.10.2022"));
+
+        Log.d("Ali", "dummy: "+ quiz.toString());
     }
 
     void setup_Views(){

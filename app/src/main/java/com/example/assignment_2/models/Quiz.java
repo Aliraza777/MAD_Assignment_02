@@ -46,6 +46,6 @@ public class Quiz {
         return "Quiz  :  " +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", Questions=" + questions ;
+                ", Questions=" + questions +  '\n' ;
     }
 }

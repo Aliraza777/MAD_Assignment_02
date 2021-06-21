@@ -1,39 +1,13 @@
 package com.example.assignment_2.utilis;
 
-import org.jetbrains.annotations.NotNull;
 
 public class ColorPicker {
-    @NotNull
-    private static final String[] colors;
-    private static int currentcolorindex;
-    @NotNull
-    public static final ColorPicker INSTANCE;
 
-    @NotNull
-    public final String[] getColors() {
-        return colors;
-    }
+    private static String[] color = {"#037e8f", "#05fafa", "#05dbeb", "#f70202", "#231c80", "#aa05fc","#e00978", "#0a8a03"};
+    private static int curretcolor = 0;
 
-    public final int getCurrentcolorindex() {
-        return currentcolorindex;
-    }
-
-    public final void setCurrentcolorindex(int var1) {
-        currentcolorindex = var1;
-    }
-
-    @NotNull
-    public final String getColor() {
-        currentcolorindex = (currentcolorindex + 1) % colors.length;
-        return colors[currentcolorindex];
-    }
-
-    public ColorPicker() {
-    }
-
-    static {
-        ColorPicker var0 = new ColorPicker();
-        INSTANCE = var0;
-        colors = new String[]{"#FFBB86FC", "#FF03DAC5", "#2B2B2B", "#850000" };
+    public static String getColor() {
+        curretcolor = (curretcolor + 1) % color.length;
+        return color[curretcolor];
     }
 }
