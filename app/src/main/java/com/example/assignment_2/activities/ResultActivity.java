@@ -44,7 +44,7 @@ public class ResultActivity extends AppCompatActivity {
         answer = findViewById(R.id.Answer);
         for (int i = 1; i < questions.size() + 1; i++) {
             Question question = questions.get("question" + i);
-            stringBuilder.append("<font color '#000094'><b> Question :  <br/>" + question.description + "</b></font><br/><br/>");
+            stringBuilder.append("<font color '#000094'><b> Question :  <br/><hr>" + question.description + "</font></br><br/><br/>");
             stringBuilder.append("<font color '#18206f'> Answer :   <br/>" + question.answer + "</font><br/><br/><br/>");
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
