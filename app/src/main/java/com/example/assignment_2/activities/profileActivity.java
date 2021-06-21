@@ -15,21 +15,22 @@ public class profileActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     TextView textView;
     Button logout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        firebaseAuth=FirebaseAuth.getInstance();
-        textView=findViewById(R.id.txtEmail);
-        if(firebaseAuth.getCurrentUser()!=null){
+        firebaseAuth = FirebaseAuth.getInstance();
+        textView = findViewById(R.id.Email);
+        if (firebaseAuth.getCurrentUser() != null) {
             textView.setText(firebaseAuth.getCurrentUser().getEmail());
         }
-        logout=findViewById(R.id.btnLogout);
+        logout = findViewById(R.id.btnLogout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(profileActivity.this, login.class);
+                Intent intent = new Intent(profileActivity.this, login.class);
                 profileActivity.this.startActivity(intent);
                 finish();
             }

@@ -18,8 +18,9 @@ import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.R)
 public class ResultActivity extends AppCompatActivity {
-    Map<String, Question> questions= Map.of();
+    Map<String, Question> questions = Map.of();
     TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,41 +28,38 @@ public class ResultActivity extends AppCompatActivity {
         textView = findViewById(R.id.txtScore);
         setUpViews();
     }
-    public void setUpViews(){
-        String quizData= getIntent().getStringExtra("QUIZ");
+
+    public void setUpViews() {
+        String quizData = getIntent().getStringExtra("QUIZ");
         Gson gson = new Gson();
-        Quiz[] quiz=gson.fromJson(quizData, Quiz[].class);
-        questions=quiz[0].questions;
-        Log.d("answer1", "setUpViews: "+questions+ '\n' + quiz);
+        Quiz[] quiz = gson.fromJson(quizData, Quiz[].class);
+        questions = quiz[0].questions;
         calculateScore();
         setAnwserView();
     }
-    public void setAnwserView(){
+
+    public void setAnwserView() {
         StringBuilder stringBuilder = new StringBuilder();
-        Integer index = 1;
         TextView answer;
         answer = findViewById(R.id.Answer);
-        for(int i = 0 ; i < questions.size() ; i++){
-            Question question = questions.get("question"+index);
-            index++;
-            stringBuilder.append("<font color '@color/blue'><b> Question <br/>"+question.description+"</b></font><br/><br/>");
-            stringBuilder.append("<font color '#18206f'> Answer <br/>"+question.answer+"</font><br/><br/><br/>");
+        for (int i = 1; i < questions.size() + 1; i++) {
+            Question question = questions.get("question" + i);
+            stringBuilder.append("<font color '#000094'><b> Question :  <br/>" + question.description + "</b></font><br/><br/>");
+            stringBuilder.append("<font color '#18206f'> Answer :   <br/>" + question.answer + "</font><br/><br/><br/>");
         }
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             answer.setText(Html.fromHtml(stringBuilder.toString(), Html.FROM_HTML_MODE_COMPACT));
-        }
-        else{
+        } else {
             answer.setText(Html.fromHtml(stringBuilder.toString()));
         }
     }
-    public void calculateScore(){
+
+    public void calculateScore() {
         Integer score = 0;
-        Integer index = 1;
-        for(int i = 0 ; i < questions.size() ; i++){
-            Question question = questions.get("question" +index);
-            index++;
-            if(question.answer.equals(question.useranswer)) {
-                score += 10;
+        for (int i = 1; i < questions.size() + 1; i++) {
+            Question question = questions.get("question" + i);
+            if (question.answer.equals(question.useranswer)) {
+                score = score + 10;
             }
         }
 

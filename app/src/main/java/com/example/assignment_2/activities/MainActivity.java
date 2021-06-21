@@ -46,12 +46,13 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerView quizlist;
     public FloatingActionButton datepicker;
     NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-        quizlist =  findViewById(R.id.recyclerView);
+        quizlist = findViewById(R.id.recyclerView);
         datepicker = findViewById(R.id.btnDatePicker);
         setup_Views();
     }
@@ -66,17 +67,18 @@ public class MainActivity extends AppCompatActivity {
 //        Log.d("Ali", "dummy: "+ quiz.toString());
 //    }
 
-    void setup_Views(){
+    void setup_Views() {
         initialize();
         setUpFireStore();
         setUpDrawlayout();
         setupRecyclerView();
         setUpDatePicker();
     }
-    public void setUpDatePicker(){
+
+    public void setUpDatePicker() {
         datepicker.setOnClickListener(value -> {
             MaterialDatePicker<Long> materialDateBuilder = MaterialDatePicker.Builder.datePicker().build();
-            materialDateBuilder.show(getSupportFragmentManager(),"DatePicker");
+            materialDateBuilder.show(getSupportFragmentManager(), "DatePicker");
             materialDateBuilder.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Long>() {
                 @Override
                 public void onPositiveButtonClick(Long selection) {
@@ -96,30 +98,32 @@ public class MainActivity extends AppCompatActivity {
             });
         });
     }
-    public void setUpFireStore(){
-        firestore = FirebaseFirestore.getInstance();
-        CollectionReference collectionReference = firestore.collection( "quizzes");
-        collectionReference.addSnapshotListener((value, error) ->{
-                if(value == null || error != null ) {
-                    Toast.makeText(this , "Error fetching Data !" , Toast.LENGTH_LONG).show();
-                    return;
-                }
 
-                quiz.clear();
-                quiz.addAll(value.toObjects(Quiz.class));
+    public void setUpFireStore() {
+        firestore = FirebaseFirestore.getInstance();
+        CollectionReference collectionReference = firestore.collection("quizzes");
+        collectionReference.addSnapshotListener((value, error) -> {
+            if (value == null || error != null) {
+                Toast.makeText(this, "Error fetching Data !", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            quiz.clear();
+            quiz.addAll(value.toObjects(Quiz.class));
             Log.d("data", "setUpFireStore: " + value.toObjects(Quiz.class).toString());
-                adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
         });
     }
 
-    public void setupRecyclerView(){
+    public void setupRecyclerView() {
         adapter = new Quizadapter(this, quiz);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this , 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         quizlist.setLayoutManager(gridLayoutManager);
         quizlist.setAdapter(adapter);
 //        quizlist.setAdapter(new Quizadapter(quiz));
     }
-    public void setUpDrawlayout(){
+
+    public void setUpDrawlayout() {
         navigationView = findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(item -> {
             Intent intent = new Intent(MainActivity.this, profileActivity.class);
@@ -128,9 +132,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
         setSupportActionBar(findViewById(R.id.appBar));
-        drawer= new ActionBarDrawerToggle(MainActivity.this,findViewById(R.id.mainDrawer),R.string.app_name,R.string.app_name);
+        drawer = new ActionBarDrawerToggle(MainActivity.this, findViewById(R.id.mainDrawer), R.string.app_name, R.string.app_name);
         drawer.syncState();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (drawer.onOptionsItemSelected(item)) {
@@ -144,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
         listenersignout();
 
     }
-    public void listenersignout(){
+
+    public void listenersignout() {
         btnsignuot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

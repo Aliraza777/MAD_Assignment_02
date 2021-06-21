@@ -1,7 +1,6 @@
 package com.example.assignment_2.adapters;
 
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -33,18 +32,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Quizadapter extends RecyclerView.Adapter<Quizadapter.QuizviewHolder>{
+public class Quizadapter extends RecyclerView.Adapter<Quizadapter.QuizviewHolder> {
     ArrayList<Quiz> quizzes;
     Context context;
     String[] option;
-    public Quizadapter(Context context,ArrayList<Quiz> quiz){
+
+    public Quizadapter(Context context, ArrayList<Quiz> quiz) {
         this.quizzes = quiz;
         this.context = context;
     }
+
     @Override
     public QuizviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.quiz_item, parent , false);
+        View view = inflater.inflate(R.layout.quiz_item, parent, false);
         return new QuizviewHolder(view);
     }
 
@@ -56,16 +57,16 @@ public class Quizadapter extends RecyclerView.Adapter<Quizadapter.QuizviewHolder
         holder.cardView.setCardBackgroundColor(Color.parseColor(ColorPicker.getColor()));
         holder.iconView.setImageResource(IconPicker.getIcon());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
-        @RequiresApi(api = Build.VERSION_CODES.R)
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(context , quizzes.get(position).title, Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(context, QuestionActivity.class);
-            intent.putExtra("DATE",quizzes.get(position).getTitle());
-            context.startActivity(intent);
+            @RequiresApi(api = Build.VERSION_CODES.R)
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, quizzes.get(position).title, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, QuestionActivity.class);
+                intent.putExtra("DATE", quizzes.get(position).getTitle());
+                context.startActivity(intent);
 //            return;
-        }
-    });
+            }
+        });
 
     }
 
@@ -79,6 +80,7 @@ public class Quizadapter extends RecyclerView.Adapter<Quizadapter.QuizviewHolder
         public TextView textViewTitle;
         public ImageView iconView;
         public CardView cardView;
+
         public QuizviewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.quizTitle);

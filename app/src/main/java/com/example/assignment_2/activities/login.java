@@ -19,10 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
-    private EditText emailV , passwordV;
-    private Button btnLogin ;
+    private EditText emailV, passwordV;
+    private Button btnLogin;
     private TextView getBtnsign;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class login extends AppCompatActivity {
 
     }
 
-    private void LoginUser(){
+    private void LoginUser() {
         emailV = findViewById(R.id.getEmailAddr);
         passwordV = findViewById(R.id.getPassword);
 
@@ -59,8 +60,8 @@ public class login extends AppCompatActivity {
         getBtnsign = findViewById(R.id.goSignpage);
     }
 
-    private void loginUserAccount(){
-        String email , password;
+    private void loginUserAccount() {
+        String email, password;
         email = emailV.getText().toString();
         password = passwordV.getText().toString();
 
@@ -84,8 +85,7 @@ public class login extends AppCompatActivity {
                             Intent intent = new Intent(login.this, MainActivity.class);
                             startActivity(intent);
                             finish();
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
                         }
                     }

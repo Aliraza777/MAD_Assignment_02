@@ -31,17 +31,18 @@ import java.util.Map;
 
 @RequiresApi(api = Build.VERSION_CODES.R)
 public class QuestionActivity extends AppCompatActivity {
-    Button next,prev,submit;
+    Button next, prev, submit;
     FirebaseFirestore firestore;
     Question question;
     Optionadapter adapter;
     Integer index = 1;
     List<Quiz> quiz = new ArrayList<>();
-//    public Map<Quiz> quiz = new ArrayList<>();
+    //    public Map<Quiz> quiz = new ArrayList<>();
 //    Question questions = (Question) Map.of();
-    Map<String,Question> questions = Map.of();
+    Map<String, Question> questions = Map.of();
     RecyclerView recyclerViewl;
     Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,8 @@ public class QuestionActivity extends AppCompatActivity {
         setUpFireStore();
         setUpEventLister();
     }
-    public void setUpEventLister(){
+
+    public void setUpEventLister() {
         prev.setOnClickListener(value -> {
             index--;
             bindViews();
@@ -63,9 +65,8 @@ public class QuestionActivity extends AppCompatActivity {
             bindViews();
         });
         submit.setOnClickListener(value -> {
-            Log.d("FINAL", questions.toString());
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json=gson.toJson(quiz);
+            String json = gson.toJson(quiz);
 
             Intent intent = new Intent(QuestionActivity.this, ResultActivity.class);
             intent.putExtra("QUIZ", json);
@@ -73,23 +74,23 @@ public class QuestionActivity extends AppCompatActivity {
             finish();
         });
     }
-    public void setUpFireStore(){
+
+    public void setUpFireStore() {
         firestore = FirebaseFirestore.getInstance();
-        String date= getIntent().getStringExtra("DATE");
-        if(date != null){
+        String date = getIntent().getStringExtra("DATE");
+        if (date != null) {
             firestore.collection("quizzes")
                     .whereEqualTo("title", date)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                            if(queryDocumentSnapshots!=null && !queryDocumentSnapshots.isEmpty()){
+                            if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                                 quiz.addAll(queryDocumentSnapshots.toObjects(Quiz.class));
                                 questions = quiz.get(0).questions;
                                 bindViews();
-                            }
-                            else{
-                                Toast.makeText(QuestionActivity.this,"No Quiz at Avaiable at Requested Date",Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(QuestionActivity.this, "No Quiz is Avaiable at this Date !", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(QuestionActivity.this, MainActivity.class);
                                 QuestionActivity.this.startActivity(intent);
                                 finish();
@@ -99,7 +100,8 @@ public class QuestionActivity extends AppCompatActivity {
         }
 
     }
-    public void bindViews(){
+
+    public void bindViews() {
 //        question = new Question(
 //                "what is your name",
 //                "ali" ,
@@ -111,23 +113,21 @@ public class QuestionActivity extends AppCompatActivity {
         next.setVisibility(View.GONE);
         prev.setVisibility(View.GONE);
         submit.setVisibility(View.GONE);
-        if(index==1){
+        if (index == 1) {
             next.setVisibility(View.VISIBLE);
-        }
-        else if(index==questions.size()) {
+        } else if (index == questions.size()) {
             submit.setVisibility(View.VISIBLE);
             prev.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             next.setVisibility(View.VISIBLE);
             prev.setVisibility(View.VISIBLE);
         }
 
-        Question question = questions.get("question"+index);
+        Question question = questions.get("question" + index);
         String description = question.description;
         TextView descp = findViewById(R.id.description);
         descp.setText(question.description);
-        adapter = new Optionadapter(this , question);
+        adapter = new Optionadapter(this, question);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewl.setLayoutManager(layoutManager);
         recyclerViewl.setAdapter(adapter);

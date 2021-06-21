@@ -9,9 +9,10 @@ public class Question {
     public String answer = "";
     public String useranswer = "";
 
-    public Question(){}
+    public Question() {
+    }
 
-    public Question(String description , String option1 , String option2 , String option3 , String option4 , String answer ){
+    public Question(String description, String option1, String option2, String option3, String option4, String answer) {
         this.description = description;
         this.option1 = option1;
         this.option2 = option2;
@@ -86,6 +87,6 @@ public class Question {
                 ", option3='" + option3 + '\'' +
                 ", option4='" + option4 + '\'' +
                 ", answer='" + answer + '\'' +
-                ", useranswer='" + useranswer + '\n' ;
+                ", useranswer='" + useranswer + '\n';
     }
 }

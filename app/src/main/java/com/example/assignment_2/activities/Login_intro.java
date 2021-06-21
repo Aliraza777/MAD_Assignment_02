@@ -15,6 +15,7 @@ public class Login_intro extends AppCompatActivity {
     private Button btnprimary;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +24,8 @@ public class Login_intro extends AppCompatActivity {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         initaliaze();
 
-        if(mAuth.getCurrentUser() != null){
-            Toast.makeText(getApplicationContext() , "User is already Logged In ... " , Toast.LENGTH_LONG).show();
+        if (mAuth.getCurrentUser() != null) {
+            Toast.makeText(getApplicationContext(), "User is already Logged In ... ", Toast.LENGTH_LONG).show();
             try {
                 redirect("MAIN");
             } catch (Exception e) {
@@ -44,25 +45,23 @@ public class Login_intro extends AppCompatActivity {
         });
 
     }
-    private void initaliaze(){
+
+    private void initaliaze() {
         btnprimary = findViewById(R.id.btn_getStarted);
     }
 
 
-
     private void redirect(String name) throws Exception {
         Intent intent;
-        if(name == "LOGIN"){
-            intent = new Intent(this , login.class);
+        if (name == "LOGIN") {
+            intent = new Intent(this, login.class);
             startActivity(intent);
             finish();
-        }
-        else if(name == "MAIN"){
+        } else if (name == "MAIN") {
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
-        }
-        else{
+        } else {
             throw new Exception("no path exist");
         }
 

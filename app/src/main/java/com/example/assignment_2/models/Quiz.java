@@ -9,10 +9,12 @@ import java.util.Map;
 public class Quiz {
     public String id;
     public String title;
-    public Map<String , Question> questions = new HashMap<>();
-    public Quiz(){
+    public Map<String, Question> questions = new HashMap<>();
+
+    public Quiz() {
     }
-    public Quiz(String id , String title){
+
+    public Quiz(String id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -46,6 +48,6 @@ public class Quiz {
         return "Quiz  :  " +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", Questions=" + questions +  '\n' ;
+                ", Questions=" + questions + '\n';
     }
 }
