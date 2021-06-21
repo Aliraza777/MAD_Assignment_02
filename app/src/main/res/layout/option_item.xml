@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+    android:layout_marginTop="8dp"
+    android:id="@+id/option_container"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<TextView
+    android:id="@+id/quiz_option"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:textSize="14sp"
+    android:text="A: Odisha"
+    android:padding="16dp"/>
+
+</LinearLayout>

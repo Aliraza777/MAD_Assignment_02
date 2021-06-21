@@ -4,7 +4,9 @@ package com.example.assignment_2.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,11 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.assignment_2.R;
 import com.example.assignment_2.activities.MainActivity;
+import com.example.assignment_2.activities.QuestionActivity;
 import com.example.assignment_2.models.Question;
 import com.example.assignment_2.models.Quiz;
 import com.example.assignment_2.utilis.ColorPicker;
@@ -49,15 +53,17 @@ public class Quizadapter extends RecyclerView.Adapter<Quizadapter.QuizviewHolder
         holder.textViewTitle.setText(quizzes.get(position).title);
         Log.d("test", "onBindViewHolder: " + ColorPicker.getColor());
         Log.d("test", "onBindViewHolder: " + IconPicker.getIcon());
-
         holder.cardView.setCardBackgroundColor(Color.parseColor(ColorPicker.getColor()));
         holder.iconView.setImageResource(IconPicker.getIcon());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.R)
         @Override
         public void onClick(View v) {
             Toast.makeText(context , quizzes.get(position).title, Toast.LENGTH_LONG).show();
-            return;
+            Intent intent=new Intent(context, QuestionActivity.class);
+            intent.putExtra("DATE",quizzes.get(position).getTitle());
+            context.startActivity(intent);
+//            return;
         }
     });
 
